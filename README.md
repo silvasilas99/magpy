@@ -1,6 +1,6 @@
-# Template flask
+![image](https://user-images.githubusercontent.com/49960425/134746779-83f24049-74a6-4fbd-8dbc-85aed032b752.png)
 
-Este é um template de uma aplicação [Flask](https://flask.palletsprojects.com/en/2.0.x/), utilizando o [SQLAlchemy](https://www.sqlalchemy.org/) como ORM, e o [Alembic](https://alembic.sqlalchemy.org/en/latest/front.html#project-homepage) como ferramenta de migração.
+Atividade para testar minhas habilidades em Python e Flask
 
 ## Iniciando
 
