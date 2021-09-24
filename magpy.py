@@ -3,7 +3,7 @@ import requests
 
 from database import db_session, init_db
 from models import Project, PackageRelease
-from sqlalchemy import exc
+from sqlalchemy import exc, orm
 
 app = Flask(__name__)
 
@@ -81,7 +81,7 @@ def show_project_detail(project_name):
             "name": project.name, 
             "packages": packages 
         }
-        
+
     except AttributeError:
         return { "error": "This project no exists! Try another!" }, 404
     
@@ -89,16 +89,29 @@ def show_project_detail(project_name):
         return { "error": "An error was occurred. Try again later!" }, 500
 
 
-@app.errorhandler(404)
-def page_not_found(error):
-    return {"error": "This page does not exist"}, 404
-
-
 @app.route("/api/projects/<string:project_name>", methods=["DELETE"])
 def delete_project(project_name):
     # TODO
     # - Apagar o projeto indicado
-    return {'foo': 'bar'}
+    
+    try: 
+        projectToDelete = Project.query.filter_by(name=project_name).first()
+
+        db_session.delete(projectToDelete)
+        db_session.commit()
+
+        return { "message": "Resource deleted successfully" }, 200
+
+    except orm.exc.UnmappedInstanceError:
+        return { "error": "You can not delete a project that does not exists!" }, 404
+
+    except: 
+        return { "error": "An error was occurred. Try again later!" }, 500
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return {"error": "This page does not exist"}, 404
 
 
 @app.teardown_appcontext
