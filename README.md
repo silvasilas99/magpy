@@ -1,3 +1,4 @@
+### MagPy
 ![image](https://user-images.githubusercontent.com/49960425/134746779-83f24049-74a6-4fbd-8dbc-85aed032b752.png)
 
 Atividade para testar minhas habilidades em Python e Flask
