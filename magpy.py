@@ -69,16 +69,24 @@ def add_project():
 def show_project_detail(project_name):
     # TODO
     # - Retornar informações do projeto
-    project = Project.query.filter_by(name=project_name).first()
-    packages = []
-
-    for el in project.package_releases:
-        packages.append({ 'name': el.name, "version": el.version })
     
-    return { 
-        "name": project.name, 
-        "packages": packages 
-    }
+    try:
+        project = Project.query.filter_by(name=project_name).first()
+        packages = []
+
+        for el in project.package_releases:
+            packages.append({ 'name': el.name, "version": el.version })
+        
+        return { 
+            "name": project.name, 
+            "packages": packages 
+        }
+        
+    except AttributeError:
+        return { "error": "This project no exists! Try another!" }, 404
+    
+    except:
+        return { "error": "An error was occurred. Try again later!" }, 500
 
 
 @app.errorhandler(404)
