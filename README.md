@@ -5,10 +5,30 @@ Atividade para testar minhas habilidades em Python e Flask
 
 ## Iniciando
 
-Instale as dependências deste template utilizando o [Pipenv](https://pipenv.pypa.io/en/latest/), com o seguinte comando:
-
+Atualizar o pip, caso esteja usando a versão antiga
 ```
-pipenv install
+python3 -m pip install --upgrade pip
+```
+
+Instalar o virtualenv e criar ambiente
+```
+pip3 install virtualenv
+python3 -m venv .venv
+```
+
+Ativar o ambiente virtual
+```
+.venv\Scripts\activate
+```
+
+Instalar pipenv
+```
+pip3 install pipenv
+```
+
+Baixar dependencias com o pipenv
+```
+python3 -m pipenv install Pipfile
 ```
 
 Para subir este app em ambiente de desenvolvimento de acordo com o seu sistema operacional, execute:
