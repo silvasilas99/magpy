@@ -11,7 +11,12 @@ from alembic import context
 config = context.config
 
 # Configure database url dynamically, according to environment
-database_url = 'sqlite:///db.sqlite3'
+if os.environ.get("FLASK_ENV") == "development":
+    database_url = 'sqlite:///db.sqlite3'
+else:
+    database_url = os.environ.get('DATABASE_URL').replace(
+        'postgres', 'postgresql'
+    )
 
 config.set_main_option("sqlalchemy.url", database_url)
 
